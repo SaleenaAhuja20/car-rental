@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import carLight from "/yellow-car.png";
+import carLight from "/light-car.png";
 import carDark from "/black-car.png";
 
 function Hero({ darkMode }) {

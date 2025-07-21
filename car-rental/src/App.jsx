@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import Hero from './components/Hero/Hero';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+
+  // for scroll animations
+useEffect(() => {
+  AOS.init({ duration: 1000 });
+}, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
