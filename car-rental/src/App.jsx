@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
+import Hero from './components/Hero/Hero';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Toggle HTML class based on darkMode
   useEffect(() => {
     const root = window.document.documentElement;
     if (darkMode) {
@@ -15,9 +15,11 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-    </div>
+  <div className={`${darkMode ? 'bg-black text-white' : 'bg-white text-black'} min-h-screen`}>
+  <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+  <Hero darkMode={darkMode} />
+</div>
+
   );
 }
 
