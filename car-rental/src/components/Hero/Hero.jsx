@@ -36,14 +36,14 @@ function Hero({ darkMode }) {
       {/* Car Image */}
       <motion.div
         className="md:w-1/2 mt-10 md:mt-0 flex justify-center"
-        initial={{ x: 100, opacity: 0 }}
+        initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <img
           src={darkMode ? carDark : carLight}
           alt="Car"
-          className="w-[80%] max-w-md"
+          className="w-[90%] max-w-md"
         />
       </motion.div>
     </motion.div>
