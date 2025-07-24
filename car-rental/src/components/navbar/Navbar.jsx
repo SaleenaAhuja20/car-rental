@@ -8,7 +8,7 @@ function Navbar({ darkMode, setDarkMode }) {
     { label: "Home", target: "home" },
     { label: "Cars", target: "available-cars" },
     { label: "About", target: "about" },
-    { label: "Booking", target: "booking" },
+    { label: "Contact Us", target: "contact-us" },
   ];
 
   return (

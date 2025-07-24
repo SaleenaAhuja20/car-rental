@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const cars = [
   {
     id: 1,
-    name: "Toyota Corolla",
+    name: "Kia Sportage",
     image: "/toyota-corolla.png",
     pricePerDay: 4500,
     fuel: "Petrol",
@@ -16,7 +16,7 @@ const cars = [
   },
   {
     id: 2,
-    name: "Honda Civic",
+    name: "Mercedes-Benz E-Class",
     image: "/honda-civic.png",
     pricePerDay: 5500,
     fuel: "Petrol",
@@ -43,8 +43,12 @@ function AvailableCars({ darkMode }) {
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     setShowBookingForm(false);
+    setSelectedCar(null); // move this up immediately!
     setBookingSuccess(true);
-    setTimeout(() => setBookingSuccess(false), 3000);
+    setTimeout(() => {
+      setBookingSuccess(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 2500);
   };
 
   const buttonBase =
@@ -177,7 +181,9 @@ function AvailableCars({ darkMode }) {
               </div>
               <div className="mt-6 flex gap-3">
                 <button
-                  onClick={() => setShowBookingForm(true)}
+                  onClick={() => {
+                    setShowBookingForm(true);
+                  }}
                   className="flex-1 px-4 py-2 rounded-xl bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book Now
@@ -195,55 +201,118 @@ function AvailableCars({ darkMode }) {
       </AnimatePresence>
 
       {/* Booking Form Modal */}
-      <AnimatePresence>
-        {showBookingForm && (
-          <Dialog
-            open
-            onClose={() => setShowBookingForm(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      {/* Booking Form Modal */}
+<AnimatePresence>
+  {showBookingForm && (
+    <Dialog
+      open
+      onClose={() => {
+        setShowBookingForm(false);
+        setSelectedCar(null);
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+    >
+      <div className="fixed inset-0 bg-black/40 backdrop-blur-md" />
+      <motion.div
+        initial={{ y: 60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 60, opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className={`relative z-50 w-full max-w-md max-h-[60vh] overflow-y-auto p-6 rounded-xl shadow-xl ${
+          darkMode ? "bg-[#1e293b] text-white" : "bg-white text-gray-900"
+        }`}
+      >
+        <Dialog.Title className="text-xl font-bold mb-4 text-center">
+           Book Your Ride
+        </Dialog.Title>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setShowBookingForm(false);
+            setSelectedCar(null);
+            alert("🎉 Your ride has been booked successfully!");
+          }}
+          className="space-y-4"
+        >
+          <div>
+            <label className="block text-sm mb-1">Full Name</label>
+            <input
+              type="text"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Email</label>
+            <input
+              type="email"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Phone</label>
+            <input
+              type="tel"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Pickup Location</label>
+            <input
+              type="text"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Drop-off Location</label>
+            <input
+              type="text"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Pickup Date & Time</label>
+            <input
+              type="datetime-local"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1">Drop-off Date & Time</label>
+            <input
+              type="datetime-local"
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm" />
-            <motion.div
-              initial={{ y: 60, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 60, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className={`relative z-50 w-full max-w-sm p-6 rounded-xl shadow-xl ${
-                darkMode ? "bg-[#1e293b] text-white" : "bg-white text-gray-900"
-              }`}
-            >
-              <Dialog.Title className="text-xl font-bold mb-4 text-center">
-                🚗 Book Your Ride
-              </Dialog.Title>
-              <form onSubmit={handleBookingSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm mb-1">Booking Date</label>
-                  <input
-                    type="date"
-                    value={bookingDate}
-                    onChange={(e) => setBookingDate(e.target.value)}
-                    required
-                    className="w-full px-3 py-2 rounded-md border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Confirm Booking
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowBookingForm(false)}
-                  className="w-full mt-2 px-4 py-2 rounded-lg bg-gray-300 text-gray-800 hover:bg-gray-400"
-                >
-                  Cancel
-                </button>
-              </form>
-            </motion.div>
-          </Dialog>
-        )}
-      </AnimatePresence>
+            Confirm Booking
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setShowBookingForm(false);
+              setSelectedCar(null);
+            }}
+            className="w-full mt-2 px-4 py-2 rounded-lg bg-gray-300 text-gray-800 hover:bg-gray-400"
+          >
+            Cancel
+          </button>
+        </form>
+      </motion.div>
+    </Dialog>
+  )}
+</AnimatePresence>
+
 
       {/* Booking Success Toast */}
       <AnimatePresence>
@@ -255,7 +324,7 @@ function AvailableCars({ darkMode }) {
             transition={{ duration: 0.5 }}
             className="fixed bottom-6 right-6 z-50 px-6 py-3 rounded-xl shadow-xl text-white border backdrop-blur-md bg-gradient-to-r from-teal-600 to-teal-700"
           >
-             Your car has been booked!
+            Your {selectedCar?.name} has been booked!
           </motion.div>
         )}
       </AnimatePresence>
