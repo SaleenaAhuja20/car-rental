@@ -1,7 +1,7 @@
 import React from "react";
 import { PartyPopper } from "lucide-react";
-import carImageLight from "/offer-car.png";
-import carImageDark from "/offer-car.png";
+import carImageLight from "/offer-car3.png";
+import carImageDark from "/offer-car3.png";
 import { motion } from "framer-motion";
 
 function OfferSection({ darkMode }) {
