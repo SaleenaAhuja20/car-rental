@@ -1,53 +1,98 @@
-import React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import React, { useState } from "react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 
 function Navbar({ darkMode, setDarkMode }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: "Home", target: "home" },
+    { label: "Cars", target: "available-cars" },
+    { label: "About", target: "about" },
+    { label: "Booking", target: "booking" },
+  ];
+
   return (
-    <nav className={`w-full transition-colors duration-500 ${darkMode ? 'bg-[#0d0d0d]' : 'bg-white'} shadow-md`}>
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-         <span className={`text-2xl font-extrabold tracking-wide ${darkMode ? 'text-white' : 'text-black'}`}>
-  Car Rental
-</span>
+    <nav
+      className={`w-full fixed top-0 z-50 backdrop-blur-md bg-opacity-60 border-b transition-all duration-500 ${
+        darkMode
+          ? "bg-[#0f172a]/80 border-slate-700 text-white"
+          : "bg-white/80 border-gray-200 text-gray-900"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a
+          href="#home"
+          className={`text-2xl font-black tracking-tight ${
+            darkMode ? "text-white" : "text-gray-900"
+          }`}
+        >
+          Drive<span className="text-indigo-500">Go</span>
+        </a>
 
-          {/* Navigation Links */}
-          <ul className="flex items-center gap-6 text-sm font-medium">
-            <li>
-              <a href="#" className={`${darkMode ? 'text-white' : 'text-black'} hover:text-primary transition-colors`}>
-                Home
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
+          {navLinks.map(({ label, target }) => (
+            <li key={label}>
+              <a
+                href={`#${target}`}
+                className={`relative pb-1 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
+                  darkMode
+                    ? "text-slate-200 hover:text-white after:bg-white"
+                    : "text-gray-700 hover:text-black after:bg-black"
+                }`}
+              >
+                {label}
               </a>
             </li>
-            <li>
-              <a href="#" className={`${darkMode ? 'text-white' : 'text-black'} hover:text-primary transition-colors`}>
-                Cars
-              </a>
-            </li>
-            <li>
-              <a href="#" className={`${darkMode ? 'text-white' : 'text-black'} hover:text-primary transition-colors`}>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" className={`${darkMode ? 'text-white' : 'text-black'} hover:text-primary transition-colors`}>
-                Booking
-              </a>
-            </li>
-          </ul>
+          ))}
+        </ul>
 
+        {/* Buttons */}
+        <div className="flex items-center gap-3 md:gap-4">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className={`p-2 rounded-full transition-all duration-300 border shadow-sm ${
+              darkMode
+                ? "bg-[#1e293b] hover:bg-[#334155] text-white border-slate-600"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-800 border-gray-300"
+            }`}
+          >
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
-          {/* Dark Mode Toggle */}
-         <button
-  onClick={() => setDarkMode(!darkMode)}
-  className={`ml-4 p-2 rounded-full transition-all duration-300 shadow-md ${
-    darkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200'
-  }`}
->
-  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-</button>
-
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2"
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Nav */}
+      {menuOpen && (
+        <div
+          className={`md:hidden flex flex-col items-center gap-4 py-4 pb-6 transition-all duration-300 ${
+            darkMode ? "bg-[#0f172a] text-white" : "bg-white text-gray-900"
+          }`}
+        >
+          {navLinks.map(({ label, target }) => (
+            <a
+              key={label}
+              href={`#${target}`}
+              className={`relative pb-1 text-sm font-medium transition-colors duration-300 after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
+                darkMode
+                  ? "text-slate-200 hover:text-white after:bg-white"
+                  : "text-gray-700 hover:text-black after:bg-black"
+              }`}
+              onClick={() => setMenuOpen(false)} // close menu on click
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }

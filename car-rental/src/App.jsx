@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import OfferSection from './components/Offer/offerSection';
+import OurServices from './components/Services/OurServices';
+import AvailableCars from './components/Cars/AvailableCars';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -14,6 +16,7 @@ function App() {
     once: false      // animation only once per element
   });
 }, []);
+// hd a
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -25,11 +28,16 @@ function App() {
   }, [darkMode]);
 
   return (
-  <div className={`${darkMode ? 'bg-black text-white' : 'bg-white text-black'} min-h-screen`}>
+<div className="bg-white text-black">
   <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
   <Hero darkMode={darkMode} />
   <OfferSection />
+  <OurServices darkMode={darkMode} />
+  <AvailableCars darkMode={darkMode} />
+
 </div>
+
+
 
   );
 }

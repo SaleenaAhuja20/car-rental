@@ -1,35 +1,83 @@
 import React from "react";
-import offerCar from "/offer-car.png"; // any car image you want
+import { PartyPopper } from "lucide-react";
+import carImageLight from "/offer-car.png";
+import carImageDark from "/offer-car.png";
 import { motion } from "framer-motion";
 
-function OfferSection() {
+function OfferSection({ darkMode }) {
   return (
-    <motion.div
-      className="w-[90%] max-w-6xl mx-auto my-24 p-8 md:p-12 rounded-3xl shadow-2xl 
-  bg-gradient-to-r from-indigo-100 via-white to-purple-100 
-  dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 
-  text-black dark:text-white flex flex-col md:flex-row items-center gap-8"
+    <section
       data-aos="fade-up"
+      className={`py-16 px-6 md:px-12 transition-all duration-700 ${
+        darkMode ? "bg-[#0e1a2b] text-white" : "bg-white text-gray-800"
+      }`}
     >
-      {/* Text */}
-      <div className="flex-1">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-wide flex items-center gap-2">
-          🎉 Exclusive First Ride Offer!
-        </h2>
-        <p className="mb-6 text-lg">
-          Book your first ride & get <span className="font-bold text-yellow-500 dark:text-yellow-400">20% OFF</span>.
-          Use code <span className="font-mono text-yellow-500 dark:text-yellow-400">WELCOME20</span> at checkout.
-        </p>
-        <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition-all duration-300 shadow-md">
-          Book Now
-        </button>
-      </div>
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+        {/* Left Content */}
+        <div
+          className="md:w-1/2 text-center md:text-left space-y-6"
+          data-aos="fade-right"
+        >
+          {/* Icon */}
+          <div className="flex justify-center md:justify-start">
+            <div
+              className={`p-4 rounded-full shadow-md inline-block ${
+                darkMode ? "bg-[#1e293b]" : "bg-gray-100"
+              }`}
+            >
+              <PartyPopper
+                size={32}
+                color={darkMode ? "#38bdf8" : "#0f172a"}
+              />
+            </div>
+          </div>
 
-      {/* Car image */}
-      <div className="flex-1 flex justify-center">
-        <img src={offerCar} alt="Offer Car" className="w-[280px] md:w-[340px]" />
+          {/* Heading */}
+          <h2
+            className={`text-4xl font-extrabold leading-tight ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
+             Your Next Adventure Begins Here
+          </h2>
+
+          {/* Paragraph */}
+          <p className="text-lg opacity-90">
+            Sign up today and unlock a{" "}
+            <span className="font-semibold">
+              50% discount
+            </span>{" "}
+            on your first ride. Smooth, stylish, and stress-free car rentals — just a click away!
+          </p>
+
+          {/* Button */}
+          <button
+            className={`mt-6 px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg ${
+              darkMode
+                ? "bg-[#1e40af] text-white hover:bg-[#1d4ed8]"
+                : "bg-[#0f172a] text-white hover:bg-gray-800"
+            }`}
+          >
+            Get Started
+          </button>
+        </div>
+
+        {/* Right Image */}
+        <motion.div
+          className="md:w-1/2 hidden md:block"
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          data-aos="fade-left"
+        >
+          <img
+            src={darkMode ? carImageDark : carImageLight}
+            alt="Offer Car"
+            className="w-full max-w-md mx-auto drop-shadow-xl"
+          />
+        </motion.div>
       </div>
-    </motion.div>
+    </section>
   );
 }
 
