@@ -30,9 +30,9 @@ function Hero({ darkMode }) {
         >
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-wide">
             {darkMode ? (
-              <span className="text-white">Where Luxury Ignites the Night.</span>
+              <span className="text-white">ShiftX: Rule the Roads at Night.</span>
             ) : (
-              "Drive the Day in Style."
+              "ShiftX: Ride the Day. Own the Drive."
             )}
           </h1>
 
@@ -42,13 +42,13 @@ function Hero({ darkMode }) {
             }`}
           >
             {darkMode
-              ? "Experience the thrill of the dark — high-end vehicles, fierce presence, and comfort that never sleeps. Rent your night companion now."
-              : "From city rides to weekend escapes, enjoy premium car rentals tailored to your every need. Comfort, elegance, and ease — all in one."}
-          </p>
+    ? "Step into power. ShiftX lets you ride the night with bold elegance, luxury wheels, and unstoppable vibes."
+    : "Shift into comfort and class. Whether it’s a quick trip or a full-day escape, ShiftX makes every ride unforgettable."}
+</p>
 
           <div className="mt-6 flex justify-center md:justify-start gap-4 flex-wrap">
             {/* Book Now Button */}
-            {/* Book Now Button */}
+           
 <button
   className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${
     darkMode

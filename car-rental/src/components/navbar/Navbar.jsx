@@ -26,7 +26,14 @@ function Navbar({ darkMode, setDarkMode }) {
             darkMode ? "text-white" : "text-gray-900"
           }`}
         >
-          Drive<span className="text-indigo-500">Go</span>
+ <div className="h-16 max-h-16 overflow-hidden flex items-center">
+  <img
+    src="/logo.png"
+    alt="ShiftX Logo"
+    className="h-full object-contain drop-shadow-[0_1px_6px_rgba(255,255,255,0.8)]"
+  />
+</div>
+
         </a>
 
         {/* Desktop Links */}

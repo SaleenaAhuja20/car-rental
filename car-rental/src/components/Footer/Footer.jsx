@@ -10,7 +10,7 @@ function Footer({ darkMode }) {
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-center md:text-left text-sm">
-          &copy; {new Date().getFullYear()} CarRental. All rights reserved.
+          &copy; {new Date().getFullYear()} ShiftX. All rights reserved.
         </p>
 
         <div className="flex gap-4">
