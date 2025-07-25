@@ -4,6 +4,9 @@ import Hero from './components/Hero/Hero';
 import OfferSection from './components/Offer/offerSection';
 import OurServices from './components/Services/OurServices';
 import AvailableCars from './components/Cars/AvailableCars';
+import AboutUs from './components/About/AboutUs';
+import ContactUs from './components/Contact/ContactUs';
+import Footer from './components/Footer/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -34,7 +37,9 @@ function App() {
   <OfferSection />
   <OurServices darkMode={darkMode} />
   <AvailableCars darkMode={darkMode} />
-
+  <AboutUs darkMode={darkMode} />
+  <ContactUs darkMode={darkMode} />
+  <Footer darkMode={darkMode} />
 </div>
 
 
