@@ -34,10 +34,10 @@ function ContactUs({ darkMode }) {
           Contact Us
         </motion.h2>
 
-        {/* ✅ Confirmation message */}
+        {/*  Confirmation message */}
         {submitted && (
           <div className="text-green-500 text-center font-medium mb-4">
-            ✅ Your message has been sent successfully!
+             Your message has been sent successfully!
           </div>
         )}
 
