@@ -7,7 +7,7 @@ function Navbar({ darkMode, setDarkMode }) {
   const navLinks = [
     { label: "Home", target: "home" },
     { label: "Cars", target: "available-cars" },
-    { label: "About", target: "about" },
+    { label: "About", target: "about-us" },
     { label: "Contact Us", target: "contact-us" },
   ];
 
